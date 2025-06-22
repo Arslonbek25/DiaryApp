@@ -5,6 +5,10 @@ var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
+
+// Configure Npgsql to handle DateTime as timestamp without time zone
+AppContext.SetSwitch("Npgsql.EnableLegacyTimestampBehavior", true);
+
 builder.Services.AddDbContext<ApplicationDBContext>(
     options => options.UseNpgsql(builder.Configuration.GetConnectionString("DB")));
 
