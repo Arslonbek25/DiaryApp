@@ -15,7 +15,7 @@ namespace DiaryApp.Controllers
         }
         public IActionResult Index()
         {
-            List<DiaryEntry> diaryEntries = _db.DiaryEntry.ToList();
+            List<DiaryEntry> diaryEntries = _db.DiaryEntry.OrderByDescending(d => d.DateCreated).ToList();
             return View(diaryEntries);
         }
 
@@ -40,7 +40,6 @@ namespace DiaryApp.Controllers
 
             return View(obj);
         }
-
 
         public IActionResult Edit(int? id)
         {

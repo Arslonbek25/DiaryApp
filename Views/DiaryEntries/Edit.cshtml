@@ -16,19 +16,21 @@
                         </div>
                         <div class="form-group mb-3">
                             <label asp-for="Content" class="form-label">Content</label>
-                            <textarea asp-for="Content" rows="5" class="form-control" placeholder="Enter what you did"></textarea>
+                            <textarea asp-for="Content" rows="5" class="form-control"
+                                placeholder="Enter what you did"></textarea>
                             <span asp-validation-for="Content" class="text-danger"></span>
                         </div>
                         <div class="form-group mb-3">
                             <label asp-for="DateCreated" class="form-label">Date</label>
-                            <input asp-for="DateCreated" class="form-control" type="date" />
+                            <input asp-for="DateCreated" class="form-control" type="date" 
+                                   value="@(Model.DateCreated == DateTime.MinValue ? DateTime.Now.ToString("yyyy-MM-dd") : Model.DateCreated.ToString("yyyy-MM-dd"))" />
                             <span asp-validation-for="DateCreated" class="text-danger"></span>
                         </div>
                         <div class="d-flex justify-content-between">
-                            <button type="submit" class="btn btn-secondary" asp-controller="DiaryEntries" asp-action="Index">
-                            Cancel
+                            <button type="submit" class="btn btn-secondary" asp-controller="DiaryEntries"
+                                asp-action="Index">Cancel
                             </button>
-                        <button type="submit" class="btn btn-primary">Edit</button>
+                            <button type="submit" class="btn btn-primary">Edit</button>
                         </div>
                     </form>
                 </div>
