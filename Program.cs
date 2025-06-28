@@ -18,11 +18,6 @@ var password = Environment.GetEnvironmentVariable("PGPASSWORD");
 
 string connectionString;
 
-// DEBUG: Log what we got
-Console.WriteLine($"PGHOST: {host ?? "NULL"}");
-Console.WriteLine($"PGPORT: {port ?? "NULL"}");
-Console.WriteLine($"PGDATABASE: {database ?? "NULL"}");
-
 if (!string.IsNullOrEmpty(host))
 {
     connectionString = $"Host={host};Port={port};Database={database};Username={username};Password={password};SSL Mode=Require;Trust Server Certificate=true";
