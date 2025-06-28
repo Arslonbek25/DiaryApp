@@ -9,10 +9,27 @@ builder.Services.AddControllersWithViews();
 // Configure Npgsql to handle DateTime as timestamp without time zone
 AppContext.SetSwitch("Npgsql.EnableLegacyTimestampBehavior", true);
 
+var connectionString = Environment.GetEnvironmentVariable("DATABASE_URL") ?? builder.Configuration.GetConnectionString("DefaultConnection");
+
 builder.Services.AddDbContext<ApplicationDBContext>(
-    options => options.UseNpgsql(builder.Configuration.GetConnectionString("DB")));
+    options => options.UseNpgsql(connectionString));
 
 var app = builder.Build();
+
+// Auto-apply migrations on startup (important for Railway)
+using (var scope = app.Services.CreateScope())
+{
+    var context = scope.ServiceProvider.GetRequiredService<ApplicationDBContext>();
+    try
+    {
+        context.Database.Migrate();
+    }
+    catch (Exception ex)
+    {
+        var logger = scope.ServiceProvider.GetRequiredService<ILogger<Program>>();
+        logger.LogError(ex, "An error occurred while migrating the database.");
+    }
+}
 
 // Configure the HTTP request pipeline.
 if (!app.Environment.IsDevelopment())

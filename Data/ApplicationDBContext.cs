@@ -18,9 +18,27 @@ namespace DiaryApp.Data
             base.OnModelCreating(modelBuilder);
 
             modelBuilder.Entity<DiaryEntry>().HasData(
-                new DiaryEntry { Id = 1, Title = "Went hiking", Content = "With bros", DateCreated = new DateTime(2024, 1, 15, 0, 0, 0, DateTimeKind.Utc) },
-                new DiaryEntry { Id = 2, Title = "Drove", Content = "123", DateCreated = new DateTime(2024, 1, 16, 0, 0, 0, DateTimeKind.Utc) },
-                new DiaryEntry { Id = 3, Title = "Diving", Content = "abc", DateCreated = new DateTime(2024, 1, 17, 0, 0, 0, DateTimeKind.Utc) }
+                new DiaryEntry
+                {
+                    Id = 1,
+                    Title = "Went Hiking",
+                    Content = "Went hiking with friends. Great weather and views.",
+                    DateCreated = new DateTime(2024, 1, 15, 0, 0, 0, DateTimeKind.Utc)
+                },
+                new DiaryEntry
+                {
+                    Id = 2,
+                    Title = "Road Trip",
+                    Content = "Drove to the coast. Enjoyed the scenic route.",
+                    DateCreated = new DateTime(2024, 1, 16, 0, 0, 0, DateTimeKind.Utc)
+                },
+                new DiaryEntry
+                {
+                    Id = 3,
+                    Title = "Diving Adventure",
+                    Content = "Tried diving. Saw colorful fish and coral.",
+                    DateCreated = new DateTime(2024, 1, 17, 0, 0, 0, DateTimeKind.Utc)
+                }
             );
         }
 
